@@ -46,11 +46,11 @@
 button {
   border-radius: 8px;
   border: none;
-  background-color: #3a3a3a;
+  background-color: #898121;
   margin: 0 4px 10px 8px;
   height: 40px;
   width: 50px;
-  box-shadow: 0px 3px 0px 0px #222121, inset -1px -3px 10px 1px #515151;
+  box-shadow: 0px 3px 0px 0px #222121, inset -1px -3px 10px 1px #898121;
 }
 
 button:active {
@@ -79,8 +79,8 @@ button:active {
 
 .red {
   font-size: 14px;
-  background-color: #a72d45;
-  box-shadow: 0px 3px 0px 0px #671c2a;
+  background-color: #fda403;
+  box-shadow: 0px 3px 0px 0px #e8751a;
 }
 
 #footer {
@@ -98,8 +98,10 @@ button,
 button:hover,
 button:active,
 button:visited {
+  color: black;
   text-decoration: none !important;
   outline: none !important;
+
 }
 
 a,
