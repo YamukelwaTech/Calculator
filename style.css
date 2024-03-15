@@ -106,7 +106,7 @@ a,
 a:hover,
 a:active,
 a:visited {
-  color: #922031;
+  color: white;
   text-decoration: none !important;
   outline: none !important;
 }
