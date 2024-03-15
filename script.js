@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Declare variables to store calculator state
   let entry = "";
   let ans = "";
   let current = "";
@@ -6,29 +7,42 @@ document.addEventListener("DOMContentLoaded", function () {
   let decimal = true;
   let reset = "";
 
+  // Function to round a value if it includes a decimal
   const round = (val) => {
+    // Convert value to string and split into array of characters
     val = val.toString().split("");
+    // Check if value includes a decimal point
     if (val.indexOf(".") !== -1) {
+      // Extract decimal part of the value
       let valTest = val.slice(val.indexOf(".") + 1, val.length);
+      // Extract integer part of the value
       val = val.slice(0, val.indexOf(".") + 1);
+      // Find index of first non-zero digit after decimal point
       let i = 0;
       while (valTest[i] < 1) {
         i++;
       }
+      // Join the decimal part with the first non-zero digits
       valTest = valTest.join("").slice(0, i + 2);
+      // Remove trailing zeros if present
       if (valTest[valTest.length - 1] === "0") {
         valTest = valTest.slice(0, -1);
       }
+      // Return the rounded value
       return val.join("") + valTest;
     } else {
+      // If value has no decimal, return the original value
       return val.join("");
     }
   };
 
+  // Add click event listener to all buttons
   document.querySelectorAll("button").forEach(function (button) {
     button.addEventListener("click", function () {
+      // Get the value of the clicked button
       entry = this.getAttribute("value");
 
+      // Reset log if necessary
       if (reset) {
         if (entry === "/" || entry === "*" || entry === "-" || entry === "+") {
           log = ans;
@@ -38,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       reset = false;
 
+      // Handle clear entry and all clear operations
       if (entry === "ac" || (entry === "ce" && current === "noChange")) {
         ans = "";
         current = "";
@@ -47,10 +62,12 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("answer").innerHTML = "0";
         decimal = true;
       } else if (entry === "ce") {
+        // Remove last entry from history and answer
         document.getElementById("history").innerHTML = log.slice(0, -current.length);
         log = log.slice(0, -current.length);
         ans = ans.slice(0, -current.length);
         current = ans;
+        // Reset history if necessary
         if (log.length === 0 || log === " ") {
           document.getElementById("history").innerHTML = "0";
         }
@@ -59,12 +76,14 @@ document.addEventListener("DOMContentLoaded", function () {
         decimal = true;
       }
 
+      // Prevent multiple decimal points in a number
       if (entry === "." || entry === "0.") {
         if (!decimal) {
           entry = "";
         }
       }
 
+      // Prevent improper use of first digit
       if (
         (ans.length === 0 && isNaN(entry) && entry !== ".") ||
         (ans.length === 0 && entry === "0")
@@ -73,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ans = "";
       }
 
+      // Prevent extra operators
       if (current !== "noChange") {
         if (
           (current === "" && isNaN(entry) && entry !== ".") ||
@@ -82,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
+      // Combine digits
       while (Number(entry) || entry === "0" || current === ".") {
         if (isNaN(current) && entry === "0" && current !== ".") {
           entry = "";
@@ -107,6 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
+      // Handle decimal point entry
       if (entry === ".") {
         if (current === "" || isNaN(current[current.length - 1])) {
           current = "0.";
@@ -124,6 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
         entry = "";
         decimal = false;
       } else if (entry === "/") {
+        // Handle division operation
         current = "/";
         ans = round(eval(ans)) + current;
         log += current;
@@ -132,6 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
         entry = "";
         decimal = true;
       } else if (entry === "*") {
+        // Handle multiplication operation
         current = "*";
         ans = round(eval(ans)) + current;
         log += "x";
@@ -140,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
         entry = "";
         decimal = true;
       } else if (entry === "-") {
+        // Handle subtraction operation
         current = "-";
         ans = round(eval(ans)) + current;
         log += current;
@@ -148,6 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
         entry = "";
         decimal = true;
       } else if (entry === "+") {
+        // Handle addition operation
         current = "+";
         ans = round(eval(ans)) + current;
         log += current;
@@ -156,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
         entry = "";
         decimal = true;
       } else if (entry === "=") {
+        // Handle equals operation
         if (current[current.length - 1] === ".") {
           entry = "";
         } else {
@@ -177,6 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
         log = "";
       }
 
+      // Check for digit limit on screen
       if (
         document.getElementById("entry").children[0].innerText.length > 8 ||
         document.getElementById("history").innerText.length > 22
