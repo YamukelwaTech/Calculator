@@ -4,11 +4,11 @@
   margin-top: 10%;
   margin-left: auto;
   margin-right: auto;
-  background-color: #dfd8d0;
-  border: 2px solid #908b85;
+  background-color: #f3eeea;
+  border: 2px solid #ebe3d5;
   border-radius: 20px;
   box-shadow: 7px 10px 34px 1px rgba(0, 0, 0, 0.68),
-    inset -1px -6px 12px 0.1px #89847e;
+    inset -1px -6px 12px 0.1px #b0a695;
 }
 
 #title {
@@ -18,12 +18,12 @@
 
 #entrybox {
   width: 85%;
-  height: 65px;
+  height: 70px;
   margin-left: auto;
   margin-right: auto;
-  border: 2px solid #b4b39d;
+  border: 2px solid black;
   border-radius: 6px;
-  background-color: #c3c2ab;
+  background-color: white;
 }
 
 #entry {
@@ -32,7 +32,7 @@
 }
 
 #buttons {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
   color: #fff;
   position: absolute;
@@ -101,7 +101,6 @@ button:visited {
   color: black;
   text-decoration: none !important;
   outline: none !important;
-
 }
 
 a,
