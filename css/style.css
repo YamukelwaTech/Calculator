@@ -113,7 +113,6 @@ a:visited {
 }
 
 #history {
-  /*transform: translate(-13px, -17px);*/
   position: relative;
   height: 10px;
   bottom: 17px;
